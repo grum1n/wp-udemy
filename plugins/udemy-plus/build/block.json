@@ -13,5 +13,15 @@
   ],
   "version": "1",
   "textdomain": "udemy-plus",
-  "editorScript": "file:./index.js"
+  "editorScript": "file:./index.js",
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "underline_color": {
+      "type": "string",
+      "default": "#f87171"
+    }
+  },
+  "style": "file:./index.css"
 }

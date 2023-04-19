@@ -2,7 +2,8 @@
 
 function up_register_blocks(){
     $blocks = [
-        ['name' => 'fancy-header']
+        ['name' => 'fancy-header'],
+        ['name' => 'search-form']
     ];
 
     foreach($blocks as $block){
@@ -10,5 +11,4 @@ function up_register_blocks(){
             UP_PLUGIN_DIR . 'build/blocks/' . $block['name']
         );
     }
-
 }

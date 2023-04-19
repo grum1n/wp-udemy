@@ -5,8 +5,10 @@ import { PanelBody, ColorPalette } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import block from './block.json';
 import './main.css';
+import icons from '../../icons.js';
 
 registerBlockType(block.name, {
+    icon: icons.primary,
     edit({ attributes, setAttributes }){
         const { content, underline_color } = attributes;
         const blockProps = useBlockProps();

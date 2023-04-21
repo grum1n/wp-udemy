@@ -2,7 +2,8 @@
 
 function up_enqueue_scripts(){
     $authURLs = json_encode([
-        'signup' => esc_url_raw(rest_url('up/v1/signup'))
+        'signup' => esc_url_raw(rest_url('up/v1/signup')),
+        'signin' => esc_url_raw(rest_url('up/v1/signin')),
     ]);
 
     // The handle name for a script will be added as the ID to the script's tag.

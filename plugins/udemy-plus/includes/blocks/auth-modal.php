@@ -1,6 +1,14 @@
 <?php
 
 function up_auth_modal_render_cb($atts){
+
+    // if user is logged in
+    // by returning an empty string. the modal will never appear.
+    //it doesn't matter if there are links with the open modal class.
+    if(is_user_logged_in()){
+        return '';
+    }
+
     ob_start();
     ?>
 

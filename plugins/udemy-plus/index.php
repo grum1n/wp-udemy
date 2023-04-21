@@ -33,6 +33,11 @@ foreach($allFiles as $filename){
 
 
 // Hooks
+//plug ins have a dedicated function for running a function during activation caaled register Activation hook
+//first argument is the path to the main plugin file
+//next, we must provide the name of the function to call during activation
+register_activation_hook(__FILE__, 'up_activate_plugin');
+
 add_action('init', 'up_register_blocks');
 add_action('rest_api_init', 'up_rest_api_init');
 // WP recommends this hook for dynamic scripts

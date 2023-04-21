@@ -101,8 +101,16 @@ function up_recipe_post_type(){
         // This feature allows us to insert blocks into the editor
         'show_in_rest' => true,
         //we can add a description for our post type by adding the description option
-        'description' => __('A custom post type for recipes', 'udemy-plus')
+        'description' => __('A custom post type for recipes', 'udemy-plus'),
+        //enabling categories and tags for our custom post type
+        //By adding these two items, the post type will support categories and tags
+        // dashboard sidebar appears Categories and Tags
+        // While the categories and tags can be added to our post type, cliants will be able to organize their recipes with these options
+        // WP will provide a UI for helping us manage these Taxonomies
+        'taxonomies' => ['category', 'post_tag']
 	);
+
+
 
     // The last step is to call the register post type function
     // The first argument of this function is the name of our post type

@@ -116,4 +116,15 @@ function up_recipe_post_type(){
     // The first argument of this function is the name of our post type
     // The second argument is an array of options which has been outsourced to a variable, we do not modify this option.
 	register_post_type( 'recipe', $args );
+
+    // the register taxonomy function
+    // dashboard sidebar , appears sub menu = cuisine
+    // This option will event appear in the Gutenberg Editor
+    // WP will dunamically load taxonomies after the content has been rendered
+    // deactivate plugin , and reactivate
+    register_taxonomy('cuisine', 'recipe', [
+        'label' => __('Cuisine', 'udemy-plus'),
+        'rewrite' => ['slug' => 'cuisine'],
+        'show_in_rest' => true
+    ]);
 }

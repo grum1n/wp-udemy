@@ -94,10 +94,18 @@ function up_recipe_post_type(){
 		// original : 'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
         // Item recipes are not going to support comments
 		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
+        // with this single option, the post can be saved via the rest API
+        // WP will create a custom endpoint for this post type , 
+        //should appear by enabling the Rest API
+        // WP will switch to Guttenberg editor for editting posts
+        // This feature allows us to insert blocks into the editor
+        'show_in_rest' => true,
+        //we can add a description for our post type by adding the description option
+        'description' => __('A custom post type for recipes', 'udemy-plus')
 	);
 
     // The last step is to call the register post type function
     // The first argument of this function is the name of our post type
-    // The second argument is an array of options which kas been outsourced to a variable, we do not modify this option.
+    // The second argument is an array of options which has been outsourced to a variable, we do not modify this option.
 	register_post_type( 'recipe', $args );
 }

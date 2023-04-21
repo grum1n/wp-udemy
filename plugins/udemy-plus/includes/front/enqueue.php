@@ -27,7 +27,7 @@ function up_enqueue_scripts(){
 
     //the next argument is the Javascript code passing the following const up_auth_rest = off URLs
     // these script tags can be excluded
-    // wordpress will wrap your code with them inside our script, we are defining a global variable with our URLs.
+    // wordpress will wrap your code with them inside our script, we are defining a gladdedobal variable with our URLs.
 
     // the last argument for our function is the placement of the scripts
     // we can add the script before or after the handle

@@ -144,6 +144,16 @@ module.exports = window["wp"]["coreData"];
 
 /***/ }),
 
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -249,8 +259,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
 /* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _icons_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../icons.js */ "./src/icons.js");
-/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./main.css */ "./src/blocks/recipe-summary/main.css");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _icons_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../icons.js */ "./src/icons.js");
+/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./main.css */ "./src/blocks/recipe-summary/main.css");
 
 
 
@@ -262,11 +274,14 @@ __webpack_require__.r(__webpack_exports__);
 // WP has a similar feature called State
 // React has useState(), WP has a similar  feature for managing its own data called entities
  //ok
+//has functions for interacting  with data in general
+//These functions can create custom data or grab data from a difference database
+
 
 
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)('udemy-plus/recipe-summary', {
   icon: {
-    src: _icons_js__WEBPACK_IMPORTED_MODULE_5__["default"].primary
+    src: _icons_js__WEBPACK_IMPORTED_MODULE_6__["default"].primary
   },
   edit(_ref) {
     let {
@@ -289,6 +304,9 @@ __webpack_require__.r(__webpack_exports__);
     //lets grab the first item by adding a name 
     // must add 4 arguments to filter the values
     const [termIDs] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.useEntityProp)('postType', 'recipe', 'cuisine', postId);
+    (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(() => {
+      console.log('useSelect called');
+    }, [termIDs]);
     console.log(termIDs);
     //termIDs data is here
     //just open Guttenberg editor and in right sidebar To cuisine add new tag

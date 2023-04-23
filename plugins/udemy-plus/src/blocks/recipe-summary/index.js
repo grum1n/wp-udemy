@@ -8,6 +8,9 @@ import { __ } from '@wordpress/i18n';
 // WP has a similar feature called State
 // React has useState(), WP has a similar  feature for managing its own data called entities
 import { useEntityProp } from '@wordpress/core-data'; //ok
+//has functions for interacting  with data in general
+//These functions can create custom data or grab data from a difference database
+import { useSelect } from '@wordpress/data';
 import icons from '../../icons.js';
 import './main.css';
 
@@ -27,6 +30,10 @@ registerBlockType('udemy-plus/recipe-summary', {
     const [termIDs] = useEntityProp(
         'postType', 'recipe', 'cuisine', postId
     );
+
+    useSelect(() => {
+        console.log('useSelect called')
+    }, [termIDs])
 
     console.log(termIDs)
     //termIDs data is here

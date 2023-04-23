@@ -1,6 +1,13 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+//if you need to grab data to posts, you will most likely import a function from package, we are importing function useEntityProp
+//useEntityProp function will return and entity form metadata
+//an entity is an object that reprecents data
+// WP will create objects for interacting with this data
+// WP has a similar feature called State
+// React has useState(), WP has a similar  feature for managing its own data called entities
+import { useEntityProp } from '@wordpress/core-data'; //ok
 import icons from '../../icons.js';
 import './main.css';
 
@@ -12,8 +19,18 @@ registerBlockType('udemy-plus/recipe-summary', {
     const { prepTime, cookTime, course } = attributes;
     const blockProps = useBlockProps();
     const { postId } = context;
+    //console.log(postId) id is here
 
-    console.log(postId)
+    //this function will return an array
+    //lets grab the first item by adding a name 
+    // must add 4 arguments to filter the values
+    const [termIDs] = useEntityProp(
+        'postType', 'recipe', 'cuisine', postId
+    );
+
+    console.log(termIDs)
+    //termIDs data is here
+    //just open Guttenberg editor and in right sidebar To cuisine add new tag
 
     return (
       <>

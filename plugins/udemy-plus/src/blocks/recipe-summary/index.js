@@ -31,11 +31,17 @@ registerBlockType('udemy-plus/recipe-summary', {
         'postType', 'recipe', 'cuisine', postId
     );
 
-    useSelect(() => {
-        console.log('useSelect called')
+    const { cuisines } = useSelect((select) => {
+        const { getEntityRecords } = select('core');
+
+        return {
+            cuisines: getEntityRecords('taxonomy', 'cuisine', {
+                include: termIDs
+            })
+        }
     }, [termIDs])
 
-    console.log(termIDs)
+    console.log(cuisines)
     //termIDs data is here
     //just open Guttenberg editor and in right sidebar To cuisine add new tag
 

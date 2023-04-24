@@ -304,10 +304,19 @@ __webpack_require__.r(__webpack_exports__);
     //lets grab the first item by adding a name 
     // must add 4 arguments to filter the values
     const [termIDs] = (0,_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.useEntityProp)('postType', 'recipe', 'cuisine', postId);
-    (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(() => {
-      console.log('useSelect called');
+    const {
+      cuisines
+    } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(select => {
+      const {
+        getEntityRecords
+      } = select('core');
+      return {
+        cuisines: getEntityRecords('taxonomy', 'cuisine', {
+          include: termIDs
+        })
+      };
     }, [termIDs]);
-    console.log(termIDs);
+    console.log(cuisines);
     //termIDs data is here
     //just open Guttenberg editor and in right sidebar To cuisine add new tag
 

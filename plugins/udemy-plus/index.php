@@ -49,3 +49,4 @@ add_action('cuisine_add_form_fields', 'up_cuisine_add_form_fields');
 add_action('create_cuisine', 'up_save_cuisine_meta');//ok
 add_action('cuisine_edit_form_fields', 'up_cuisine_edit_form_fields');//ok
 add_action('edited_cuisine', 'up_save_cuisine_meta'); //OK
+add_action('save_post_recipe', 'up_save_post_recipe');

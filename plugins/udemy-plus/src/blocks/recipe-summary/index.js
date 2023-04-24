@@ -11,6 +11,7 @@ import { useEntityProp } from '@wordpress/core-data'; //ok
 //has functions for interacting  with data in general
 //These functions can create custom data or grab data from a difference database
 import { useSelect } from '@wordpress/data';
+import { Spinner } from '@wordpress/components';
 import icons from '../../icons.js';
 import './main.css';
 
@@ -31,13 +32,20 @@ registerBlockType('udemy-plus/recipe-summary', {
         'postType', 'recipe', 'cuisine', postId
     );
 
-    const { cuisines } = useSelect((select) => {
-        const { getEntityRecords } = select('core');
+    const { cuisines, isLoading } = useSelect((select) => {
+        const { getEntityRecords, isResolving } = select('core');
+
+        const taxonomyArgs = [
+            'taxonomy', 
+            'cuisine', 
+            {
+                include: termIDs
+            }
+        ]
 
         return {
-            cuisines: getEntityRecords('taxonomy', 'cuisine', {
-                include: termIDs
-            })
+            cuisines: getEntityRecords(...taxonomyArgs),
+            isLoading: isResolving('getEntityRecords', taxonomyArgs) 
         }
     }, [termIDs])
 
@@ -89,6 +97,22 @@ registerBlockType('udemy-plus/recipe-summary', {
               <div className="recipe-metadata">
                 <div className="recipe-title">{__('Cuisine', 'udemy-plus')}</div>
                 <div className="recipe-data recipe-cuisine">
+                    {
+                        isLoading &&
+                        <Spinner />
+                    }
+                    {
+                        !isLoading && cuisines && cuisines.map((item, index) => {
+                            const comma = cuisines[index + 1] ? ',' : ''
+                            return(
+                                <>
+                                    <a href={item.meta.more_info_url}>
+                                        {item.name}
+                                    </a> {comma}
+                                </>
+                            )
+                        })
+                    }
                 </div>
               </div>
               <i className="bi bi-egg-fried"></i>

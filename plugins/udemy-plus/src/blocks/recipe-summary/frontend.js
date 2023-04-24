@@ -1,24 +1,25 @@
 import Rating from "@mui/material/Rating/index.js";
-import { render, useState } from "@wordpress/element";
-import { apiFetch } from '@wordpress/api-fetch';
+import { render, useState } from "@wordpress/element";//ok
+//import { apiFetch } from '@wordpress/api-fetch'; // video
+import apiFetch from '@wordpress/api-fetch'; // handbook
 
 function RecipeRating(props){
-    const [avgRating, setAvgRating] = useState(props.avgRating)
-    const [permission, setPermission] = useState(props.loggedIn)
+    const [avgRating, setAvgRating] = useState(props.avgRating) 
+    const [permission, setPermission] = useState(props.loggedIn) 
 
     return (
         <Rating
             value={avgRating} 
             precision={0.5}
             onChange={async (event, rating) => {
-                if(permission){
+                if(!permission){
                     return alert('You have already rated this recipe or you may need to log in.')
                 }
 
                 setPermission(false)
 
-                await apiFetch({
-                    //example.com/wo-json/up/v1/rate
+                const response = await apiFetch({
+                    //example.com/wp-json/up/v1/rate
                     path: 'up/v1/rate',
                     method:'POST',
                     data: {
@@ -26,6 +27,10 @@ function RecipeRating(props){
                         rating
                     }
                 })
+
+                if(response.status == 2 ){
+                    setAvgRating(response.rating)
+                }
             }}
         />
     )

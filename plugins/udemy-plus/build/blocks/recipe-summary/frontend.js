@@ -11936,7 +11936,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
+ //ok
+//import { apiFetch } from '@wordpress/api-fetch'; // video
+ // handbook
 
 function RecipeRating(props) {
   const [avgRating, setAvgRating] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(props.avgRating);
@@ -11945,12 +11947,12 @@ function RecipeRating(props) {
     value: avgRating,
     precision: 0.5,
     onChange: async (event, rating) => {
-      if (permission) {
+      if (!permission) {
         return alert('You have already rated this recipe or you may need to log in.');
       }
       setPermission(false);
-      await (0,_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__.apiFetch)({
-        //example.com/wo-json/up/v1/rate
+      const response = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+        //example.com/wp-json/up/v1/rate
         path: 'up/v1/rate',
         method: 'POST',
         data: {
@@ -11958,6 +11960,9 @@ function RecipeRating(props) {
           rating
         }
       });
+      if (response.status == 2) {
+        setAvgRating(response.rating);
+      }
     }
   });
 }

@@ -49,7 +49,17 @@ registerBlockType('udemy-plus/recipe-summary', {
         }
     }, [termIDs])
 
-    console.log(cuisines)
+    const { rating } = useSelect(select => {
+        const { getCurrentPostAttribute } = select('core/editor')
+
+        return {
+            rating: getCurrentPostAttribute('meta').recipe_rating
+        }
+    })
+
+
+
+    console.log(rating)
     //termIDs data is here
     //just open Guttenberg editor and in right sidebar To cuisine add new tag
 

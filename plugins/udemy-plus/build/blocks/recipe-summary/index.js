@@ -333,7 +333,17 @@ __webpack_require__.r(__webpack_exports__);
         isLoading: isResolving('getEntityRecords', taxonomyArgs)
       };
     }, [termIDs]);
-    console.log(cuisines);
+    const {
+      rating
+    } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_5__.useSelect)(select => {
+      const {
+        getCurrentPostAttribute
+      } = select('core/editor');
+      return {
+        rating: getCurrentPostAttribute('meta').recipe_rating
+      };
+    });
+    console.log(rating);
     //termIDs data is here
     //just open Guttenberg editor and in right sidebar To cuisine add new tag
 

@@ -93,7 +93,7 @@ function up_recipe_post_type(){
         // We are modifying to removing comments
 		// original : 'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
         // Item recipes are not going to support comments
-		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
+		'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields' ),
         // with this single option, the post can be saved via the rest API
         // WP will create a custom endpoint for this post type , 
         //should appear by enabling the Rest API
@@ -134,5 +134,13 @@ function up_recipe_post_type(){
         'single' => true,
         'show_in_rest' => true,
         'default' => '#'
+    ]);
+
+    register_post_meta('recipe', 'recipe_rating', [
+        'type' => 'number',
+        'description' => __('The rating for a recipe', 'udemy-plus'),
+        'single' => true,
+        'default' => 0,
+        'show_in_rest' => true
     ]);
 }

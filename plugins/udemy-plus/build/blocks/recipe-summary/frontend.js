@@ -11943,6 +11943,11 @@ __webpack_require__.r(__webpack_exports__);
 function RecipeRating(props) {
   const [avgRating, setAvgRating] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(props.avgRating);
   const [permission, setPermission] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(props.loggedIn);
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    if (props.ratingCount) {
+      setPermission(false);
+    }
+  }, []);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_mui_material_Rating_index_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
     value: avgRating,
     precision: 0.5,
@@ -11971,10 +11976,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const postID = parseInt(block.dataset.postId);
   const avgRating = parseFloat(block.dataset.avgRating);
   const loggedIn = !!block.dataset.loggedIn;
+  const ratingCount = !!parseInt(block.dataset.ratingCount);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(RecipeRating, {
     postID: postID,
     avgRating: avgRating,
-    loggedIn: loggedIn
+    loggedIn: loggedIn,
+    ratingCount: ratingCount
   }), block);
 });
 }();

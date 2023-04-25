@@ -52,5 +52,7 @@ add_action('edited_cuisine', 'up_save_cuisine_meta'); //OK
 add_action('save_post_recipe', 'up_save_post_recipe');
 //242 tut
 add_action('after_setup_theme', 'up_setup_theme');
+//243 tut
+add_filter('image_size_names_choose', 'up_custom_image_sizes');
 
 

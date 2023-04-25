@@ -271,6 +271,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)('udemy-plus/team-member', {
   icon: {
     src: _icons_js__WEBPACK_IMPORTED_MODULE_6__["default"].primary
@@ -290,6 +291,7 @@ __webpack_require__.r(__webpack_exports__);
       socialHandles
     } = attributes;
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)();
+    const [imgPreview, setImgPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(imgURL);
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Settings', 'udemy-plus')
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextareaControl, {
@@ -301,10 +303,10 @@ __webpack_require__.r(__webpack_exports__);
       help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Description of your image for screen readers.', 'udemy-plus')
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "author-meta"
-    }, imgURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-      src: imgURL,
+    }, imgPreview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+      src: imgPreview,
       alt: imgAlt
-    }), (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_5__.isBlobURL)(imgURL) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+    }), (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_5__.isBlobURL)(imgPreview) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
       acceptedTypes: ['image'],
       accept: 'image/*',
       icon: "admin-users",
@@ -314,15 +316,16 @@ __webpack_require__.r(__webpack_exports__);
           newImgURL = img.url;
         } else {
           newImgURL = img.sizes ? img.sizes.teamMember.url : img.media_details.sizes.teamMember.source_url;
+          setAttributes({
+            imgID: img.id,
+            imgAlt: img.alt,
+            imgURL: newImgURL
+          });
         }
-        setAttributes({
-          imgID: img.id,
-          imgAlt: img.alt,
-          imgURL: newImgURL
-        });
+        setImgPreview(newImgURL);
       },
       onError: error => console.log(error),
-      disableMediaButtons: imgURL,
+      disableMediaButtons: imgPreview,
       onSelectURL: url => {
         setAttributes({
           imgID: null,

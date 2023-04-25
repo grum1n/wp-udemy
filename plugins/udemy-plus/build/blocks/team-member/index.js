@@ -304,7 +304,7 @@ __webpack_require__.r(__webpack_exports__);
     }, imgURL && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
       src: imgURL,
       alt: imgAlt
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
+    }), (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_5__.isBlobURL)(imgURL) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Spinner, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaPlaceholder, {
       acceptedTypes: ['image'],
       accept: 'image/*',
       icon: "admin-users",

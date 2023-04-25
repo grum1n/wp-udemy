@@ -3,7 +3,7 @@ import {
   } from '@wordpress/block-editor';
   import { __ } from '@wordpress/i18n';
   import { 
-    PanelBody, TextareaControl, Spinner , ToolbarButton, Tooltip, Icon
+    PanelBody, TextareaControl, Spinner , ToolbarButton, Tooltip, Icon, TextControl, Button
   } from '@wordpress/components';
   import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
   import { useState } from '@wordpress/element';
@@ -178,7 +178,46 @@ export default function({ attributes, setAttributes, context, isSelected }) {
           </div>
           {
             isSelected && activeSocialLink !== null && 
-            <div className="team-member-social-edit-ctr"></div>
+            <div className="team-member-social-edit-ctr">
+                <TextControl 
+                    label={__('URL', 'udemy-plus')}
+                    value={socialHandles[activeSocialLink].url}
+                    onChange={url => {
+                        const tempLink = { ... socialHandles[activeSocialLink] };
+                        const tempSocial = [... socialHandles];
+
+                        tempLink.url = url;
+                        tempSocial[activeSocialLink] = tempLink;
+
+                        setAttributes({ socialHandles: tempSocial })
+                    }}
+                />
+                <TextControl 
+                    label={__('Icon', 'udemy-plus')}
+                    value={socialHandles[activeSocialLink].icon}
+                    onChange={(icon) => {
+                        const tempLink = { ... socialHandles[activeSocialLink] };
+                        const tempSocial = [... socialHandles];
+
+                        tempLink.icon = icon;
+                        tempSocial[activeSocialLink] = tempLink;
+
+                        setAttributes({ socialHandles: tempSocial })
+                    }}
+                />
+                <Button 
+                    isDestructive 
+                    onClick={() => {
+                        const  tempCopy = [ ...socialHandles ];
+                        tempCopy.splice(activeSocialLink, 1);
+                        
+                        setAttributes({ socialHandles: tempCopy });
+                        setActiveSocialLink(null);
+                    }}
+                >
+                    {__('Remove' , 'udemy-plus')}
+                </Button>
+            </div>
           }
         </div>
       </>

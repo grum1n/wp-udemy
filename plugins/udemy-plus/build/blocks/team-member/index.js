@@ -169,7 +169,45 @@ __webpack_require__.r(__webpack_exports__);
     icon: "plus"
   })))), isSelected && activeSocialLink !== null && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "team-member-social-edit-ctr"
-  })));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('URL', 'udemy-plus'),
+    value: socialHandles[activeSocialLink].url,
+    onChange: url => {
+      const tempLink = {
+        ...socialHandles[activeSocialLink]
+      };
+      const tempSocial = [...socialHandles];
+      tempLink.url = url;
+      tempSocial[activeSocialLink] = tempLink;
+      setAttributes({
+        socialHandles: tempSocial
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Icon', 'udemy-plus'),
+    value: socialHandles[activeSocialLink].icon,
+    onChange: icon => {
+      const tempLink = {
+        ...socialHandles[activeSocialLink]
+      };
+      const tempSocial = [...socialHandles];
+      tempLink.icon = icon;
+      tempSocial[activeSocialLink] = tempLink;
+      setAttributes({
+        socialHandles: tempSocial
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    isDestructive: true,
+    onClick: () => {
+      const tempCopy = [...socialHandles];
+      tempCopy.splice(activeSocialLink, 1);
+      setAttributes({
+        socialHandles: tempCopy
+      });
+      setActiveSocialLink(null);
+    }
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Remove', 'udemy-plus')))));
 }
 
 /***/ }),

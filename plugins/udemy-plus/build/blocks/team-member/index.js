@@ -31,7 +31,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(_ref) {
   let {
     attributes,
-    setAttributes
+    setAttributes,
+    context
   } = _ref;
   const {
     name,
@@ -67,6 +68,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     setImgPreview(url);
   };
+  const imageClass = `wp-image-${imgID} img-${context["udemy-plus/image-shape"]}`;
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, imgPreview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockControls, {
     group: "inline"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaReplaceFlow, {
@@ -89,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Remove Image', 'udemy-plus'))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings', 'udemy-plus')
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+  }, imgPreview && !(0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.isBlobURL)(imgPreview) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Alt Attribute', 'udemy-plus'),
     value: imgAlt,
     onChange: imgAlt => setAttributes({
@@ -100,7 +102,8 @@ __webpack_require__.r(__webpack_exports__);
     className: "author-meta"
   }, imgPreview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
     src: imgPreview,
-    alt: imgAlt
+    alt: imgAlt,
+    className: imageClass
   }), (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.isBlobURL)(imgPreview) && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaPlaceholder, {
     acceptedTypes: ['image'],
     accept: 'image/*',

@@ -144,7 +144,22 @@ __webpack_require__.r(__webpack_exports__);
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
       className: `bi bi-${handle.icon}`
     }));
-  }))));
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Tooltip, {
+    text: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add Social Media Handle', 'udemy-plus')
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: "#",
+    onClick: event => {
+      event.preventDefault();
+      setAttributes({
+        socialHandles: [...socialHandles, {
+          icon: "question",
+          url: ""
+        }]
+      });
+    }
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
+    icon: "plus"
+  }))))));
 }
 
 /***/ }),

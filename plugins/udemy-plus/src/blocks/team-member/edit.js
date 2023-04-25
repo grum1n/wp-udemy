@@ -3,7 +3,7 @@ import {
   } from '@wordpress/block-editor';
   import { __ } from '@wordpress/i18n';
   import { 
-    PanelBody, TextareaControl, Spinner , ToolbarButton
+    PanelBody, TextareaControl, Spinner , ToolbarButton, Tooltip, Icon
   } from '@wordpress/components';
   import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
   import { useState } from '@wordpress/element';
@@ -142,6 +142,22 @@ export default function({ attributes, setAttributes, context }) {
                         <i className={`bi bi-${handle.icon}`}></i>
                     </a>)
             })}
+            <Tooltip text={__('Add Social Media Handle', 'udemy-plus')}>
+                <a href="#" onClick={(event) => {
+                    event.preventDefault();
+                    setAttributes({
+                        socialHandles: [
+                            ...socialHandles, {
+                            icon: "question",
+                            url: ""
+                            }
+                        ]
+                    })
+                }}>
+                    <Icon icon="plus" />
+                </a>
+
+            </Tooltip>
           </div>
         </div>
       </>

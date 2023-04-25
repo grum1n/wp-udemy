@@ -50,6 +50,8 @@ export default function({ attributes, setAttributes, context, isSelected }) {
 
     const imageClass = `wp-image-${imgID} img-${context["udemy-plus/image-shape"]}`;
 
+    const [activeSocialLink, setActiveSocialLink] = useState(null);
+
     return (
       <>
        {
@@ -138,30 +140,46 @@ export default function({ attributes, setAttributes, context, isSelected }) {
           <div className="social-links">
             {socialHandles.map((handle, index) => {
                 return (
-                    <a href={handle.url} key={index}>
+                    <a 
+                        href={handle.url} 
+                        key={index} 
+                        onClick={event => {
+                            event.preventDefault()
+                            setActiveSocialLink(activeSocialLink === index ? null : index)
+                        }}
+                        className={activeSocialLink === index && isSelected ? 'is-active' : ''}
+                    >
                         <i className={`bi bi-${handle.icon}`}></i>
                     </a>)
             })}
             {
                 isSelected &&
                 <Tooltip text={__('Add Social Media Handle', 'udemy-plus')}>
-                    <a href="#" onClick={(event) => {
-                        event.preventDefault();
-                        setAttributes({
-                            socialHandles: [
-                                ...socialHandles, {
-                                icon: "question",
-                                url: ""
-                                }
-                            ]
-                        })
-                    }}>
+                    <a href="#" 
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setAttributes({
+                                socialHandles: [
+                                    ...socialHandles, {
+                                    icon: "question",
+                                    url: ""
+                                    }
+                                ]
+                            });
+
+                            setActiveSocialLink(socialHandles.length)
+                        }}
+                    >
                         <Icon icon="plus" />
                     </a>
 
                 </Tooltip>
             }
           </div>
+          {
+            isSelected && activeSocialLink !== null && 
+            <div className="team-member-social-edit-ctr"></div>
+          }
         </div>
       </>
     );

@@ -20,5 +20,30 @@
   "style": "file:./index.css",
   "providesContext": {
     "udemy-plus/image-shape": "imageShape"
+  },
+  "example": {
+    "attributes": {
+      "columns": 2
+    },
+    "innerBlocks": [
+      {
+        "name": "udemy-plus/team-member",
+        "attributes": {
+          "name": "John Doe",
+          "title": "CEO of Udemy",
+          "bio": "This is a short description of the team member.",
+          "imgURL": "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+        }
+      },
+      {
+        "name": "udemy-plus/team-member",
+        "attributes": {
+          "name": "Jane Doe",
+          "title": "CEO of Udemy",
+          "bio": "This is a short description of the team member.",
+          "imgURL": "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
+        }
+      }
+    ]
   }
 }

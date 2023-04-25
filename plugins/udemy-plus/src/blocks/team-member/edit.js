@@ -1,9 +1,9 @@
 import { 
-    useBlockProps, InspectorControls, RichText, MediaPlaceholder
+    useBlockProps, InspectorControls, RichText, MediaPlaceholder,  BlockControls, MediaReplaceFlow
   } from '@wordpress/block-editor';
   import { __ } from '@wordpress/i18n';
   import { 
-    PanelBody, TextareaControl, Spinner
+    PanelBody, TextareaControl, Spinner 
   } from '@wordpress/components';
   import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
   import { useState } from '@wordpress/element';
@@ -16,8 +16,53 @@ export default function({ attributes, setAttributes }) {
 
     const [imgPreview, setImgPreview] = useState(imgURL)
 
+    const selectImg = img => {
+                  
+        let newImgURL = null
+
+        if(isBlobURL(img.url)){
+            newImgURL = img.url
+        } else {
+            newImgURL = img.sizes ? 
+                img.sizes.teamMember.url :
+                img.media_details.sizes.teamMember.source_url
+
+            setAttributes({
+                imgID: img.id,
+                imgAlt: img.alt,
+                imgURL: newImgURL
+            })
+
+            revokeBlobURL(imgPreview)
+        }
+        setImgPreview(newImgURL)
+    }
+
+    const selectImgURL = url => {
+        setAttributes({
+            imgID: null,
+            imgAlt: null,
+            imgURL: url
+        })
+    }
+
     return (
       <>
+        <BlockControls>
+            {
+                imgPreview &&
+                <MediaReplaceFlow 
+                    name={__('Replace Image', 'udemy-plus')}
+                    mediaId={imgID}
+                    mediaURL={imgURL}
+                    acceptedTypes={['image']}
+                    accept={'image/*'}
+                    onError={error => console.error(error)}
+                    onSelect={selectImg}
+                    onSelectURL={selectImgURL}
+                />
+            }
+        </BlockControls>
         <InspectorControls>
           <PanelBody title={__('Settings', 'udemy-plus')}>
             <TextareaControl 
@@ -43,36 +88,10 @@ export default function({ attributes, setAttributes }) {
                 acceptedTypes={['image']}
                 accept={'image/*'}
                 icon="admin-users"
-                onSelect={img => {
-                  
-                    let newImgURL = null
-
-                    if(isBlobURL(img.url)){
-                        newImgURL = img.url
-                    } else {
-                        newImgURL = img.sizes ? 
-                            img.sizes.teamMember.url :
-                            img.media_details.sizes.teamMember.source_url
-
-                        setAttributes({
-                            imgID: img.id,
-                            imgAlt: img.alt,
-                            imgURL: newImgURL
-                        })
-
-                        revokeBlobURL(imgPreview)
-                    }
-                    setImgPreview(newImgURL)
-                }}
-                onError={error => console.log(error)}
+                onSelect={selectImg}
+                onError={error => console.error(error)}
                 disableMediaButtons={imgPreview}
-                onSelectURL={url => {
-                    setAttributes({
-                        imgID: null,
-                        imgAlt: null,
-                        imgURL: url
-                    })
-                }}
+                onSelectURL={selectImgURL}
             />
             <p>
               <RichText 

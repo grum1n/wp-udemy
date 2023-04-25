@@ -44,7 +44,38 @@ __webpack_require__.r(__webpack_exports__);
   } = attributes;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
   const [imgPreview, setImgPreview] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(imgURL);
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  const selectImg = img => {
+    let newImgURL = null;
+    if ((0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.isBlobURL)(img.url)) {
+      newImgURL = img.url;
+    } else {
+      newImgURL = img.sizes ? img.sizes.teamMember.url : img.media_details.sizes.teamMember.source_url;
+      setAttributes({
+        imgID: img.id,
+        imgAlt: img.alt,
+        imgURL: newImgURL
+      });
+      (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.revokeBlobURL)(imgPreview);
+    }
+    setImgPreview(newImgURL);
+  };
+  const selectImgURL = url => {
+    setAttributes({
+      imgID: null,
+      imgAlt: null,
+      imgURL: url
+    });
+  };
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.BlockControls, null, imgPreview && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaReplaceFlow, {
+    name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Replace Image', 'udemy-plus'),
+    mediaId: imgID,
+    mediaURL: imgURL,
+    acceptedTypes: ['image'],
+    accept: 'image/*',
+    onError: error => console.error(error),
+    onSelect: selectImg,
+    onSelectURL: selectImgURL
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings', 'udemy-plus')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Alt Attribute', 'udemy-plus'),
@@ -62,30 +93,10 @@ __webpack_require__.r(__webpack_exports__);
     acceptedTypes: ['image'],
     accept: 'image/*',
     icon: "admin-users",
-    onSelect: img => {
-      let newImgURL = null;
-      if ((0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.isBlobURL)(img.url)) {
-        newImgURL = img.url;
-      } else {
-        newImgURL = img.sizes ? img.sizes.teamMember.url : img.media_details.sizes.teamMember.source_url;
-        setAttributes({
-          imgID: img.id,
-          imgAlt: img.alt,
-          imgURL: newImgURL
-        });
-        (0,_wordpress_blob__WEBPACK_IMPORTED_MODULE_4__.revokeBlobURL)(imgPreview);
-      }
-      setImgPreview(newImgURL);
-    },
-    onError: error => console.log(error),
+    onSelect: selectImg,
+    onError: error => console.error(error),
     disableMediaButtons: imgPreview,
-    onSelectURL: url => {
-      setAttributes({
-        imgID: null,
-        imgAlt: null,
-        imgURL: url
-      });
-    }
+    onSelectURL: selectImgURL
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Name', 'udemy-plus'),
     tagName: "strong",

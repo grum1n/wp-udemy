@@ -23,6 +23,9 @@ function up_register_blocks(){
         ['name' => 'popular-recipes', 'options' => [
             'render_callback' => 'up_popular_recipes_cb'
         ]],
+        ['name' => 'daily-recipe', 'options' => [
+            'render_callback' => 'up_daily_recipe_cb'
+        ]],
     ];
 
     foreach($blocks as $block){

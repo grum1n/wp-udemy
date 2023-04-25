@@ -303,7 +303,14 @@ __webpack_require__.r(__webpack_exports__);
         });
       },
       onError: error => console.log(error),
-      disableMediaButtons: imgURL
+      disableMediaButtons: imgURL,
+      onSelectURL: url => {
+        setAttributes({
+          imgID: null,
+          imgAlt: null,
+          imgURL: url
+        });
+      }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
       placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Name', 'udemy-plus'),
       tagName: "strong",

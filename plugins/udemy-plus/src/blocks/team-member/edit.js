@@ -135,7 +135,14 @@ export default function({ attributes, setAttributes, context }) {
               value={bio}
             />
           </div>
-          <div className="social-links"></div>
+          <div className="social-links">
+            {socialHandles.map((handle, index) => {
+                return (
+                    <a href={handle.url} key={index}>
+                        <i className={`bi bi-${handle.icon}`}></i>
+                    </a>)
+            })}
+          </div>
         </div>
       </>
     );

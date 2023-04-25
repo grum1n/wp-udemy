@@ -137,7 +137,14 @@ __webpack_require__.r(__webpack_exports__);
     value: bio
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "social-links"
-  })));
+  }, socialHandles.map((handle, index) => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      href: handle.url,
+      key: index
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+      className: `bi bi-${handle.icon}`
+    }));
+  }))));
 }
 
 /***/ }),

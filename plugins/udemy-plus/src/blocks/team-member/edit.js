@@ -3,7 +3,7 @@ import {
   } from '@wordpress/block-editor';
   import { __ } from '@wordpress/i18n';
   import { 
-    PanelBody, TextareaControl, Spinner 
+    PanelBody, TextareaControl, Spinner , ToolbarButton
   } from '@wordpress/components';
   import { isBlobURL, revokeBlobURL } from '@wordpress/blob';
   import { useState } from '@wordpress/element';
@@ -44,25 +44,39 @@ export default function({ attributes, setAttributes }) {
             imgAlt: null,
             imgURL: url
         })
+
+        setImgPreview(url);
     }
 
     return (
       <>
-        <BlockControls>
-            {
-                imgPreview &&
-                <MediaReplaceFlow 
-                    name={__('Replace Image', 'udemy-plus')}
-                    mediaId={imgID}
-                    mediaURL={imgURL}
-                    acceptedTypes={['image']}
-                    accept={'image/*'}
-                    onError={error => console.error(error)}
-                    onSelect={selectImg}
-                    onSelectURL={selectImgURL}
+       {
+            imgPreview && (
+            <BlockControls group="inline">
+                <MediaReplaceFlow
+                name={__("Replace Image", "udemy-plus")}
+                mediaId={imgID}
+                mediaURL={imgURL}
+                allowedTypes={["image"]}
+                accept={"image/*"}
+                onError={(error) => console.error(error)}
+                onSelect={selectImg}
+                onSelectURL={selectImgURL}
                 />
-            }
-        </BlockControls>
+                <ToolbarButton onClick={() => {
+                    setAttributes({
+                        imgID: 0,
+                        imgAlt: "",
+                        imgURL: ""
+                    });
+                    setImgPreview("");
+                }}>
+                    {__('Remove Image', 'udemy-plus')}
+
+                </ToolbarButton>
+            </BlockControls>
+            )
+        }
         <InspectorControls>
           <PanelBody title={__('Settings', 'udemy-plus')}>
             <TextareaControl 

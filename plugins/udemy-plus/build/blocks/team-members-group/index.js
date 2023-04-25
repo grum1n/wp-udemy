@@ -298,9 +298,16 @@ __webpack_require__.r(__webpack_exports__);
       })
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", blockProps, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, {
       orientation: "horizontal",
-      allowedBlocks: ['udemy-plus/team-member']
+      allowedBlocks: ['udemy-plus/team-member'],
+      template: [['udemy-plus/team-member', {
+        name: 'John Doe',
+        title: 'CEO of Udemy',
+        bio: 'This is an example of a bio'
+      }], ['udemy-plus/team-member'], ['udemy-plus/team-member']]
+      // templateLock="all"
     })));
   },
+
   save(_ref2) {
     let {
       attributes

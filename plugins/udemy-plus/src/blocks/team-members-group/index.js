@@ -44,6 +44,19 @@ registerBlockType('udemy-plus/team-members-group', {
                 allowedBlocks={[
                     'udemy-plus/team-member'
                 ]}
+                template={[
+                    [
+                        'udemy-plus/team-member',
+                        {
+                            name: 'John Doe',
+                            title: 'CEO of Udemy',
+                            bio: 'This is an example of a bio'
+                        }
+                    ],
+                    ['udemy-plus/team-member'],
+                    ['udemy-plus/team-member']
+                ]}
+                // templateLock="all"
             />
         </div>
       </>

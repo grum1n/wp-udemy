@@ -52,6 +52,10 @@ export default function({ attributes, setAttributes, context, isSelected }) {
 
     const [activeSocialLink, setActiveSocialLink] = useState(null);
 
+    setAttributes({
+        imageShape: context["udemy-plus/image-shape"],
+    });
+
     return (
       <>
        {
@@ -210,7 +214,7 @@ export default function({ attributes, setAttributes, context, isSelected }) {
                     onClick={() => {
                         const  tempCopy = [ ...socialHandles ];
                         tempCopy.splice(activeSocialLink, 1);
-                        
+
                         setAttributes({ socialHandles: tempCopy });
                         setActiveSocialLink(null);
                     }}

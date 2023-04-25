@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { 
-  useBlockProps, InspectorControls, RichText
+  useBlockProps, InspectorControls, RichText, MediaPlaceholder
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { 
@@ -37,6 +37,15 @@ registerBlockType('udemy-plus/team-member', {
         <div {...blockProps}>
           <div className="author-meta">
             <img /> 
+            <MediaPlaceholder 
+                acceptedTypes={['image']}
+                accept={'image/*'}
+                icon="admin-users"
+                onSelect={img => {
+                    console.log(img)
+                }}
+                onError={error => console.log(error)}
+            />
             <p>
               <RichText 
                 placeholder={__('Name', 'udemy-plus')}

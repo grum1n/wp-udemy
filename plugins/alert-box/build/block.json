@@ -31,5 +31,16 @@
   "supports": {
     "html": false,
     "align": true
-  }
+  },
+  "styles": [
+    {
+      "name": "regular",
+      "label": "Regular",
+      "isDefault": true
+    },
+    {
+      "name": "accented",
+      "label": "Accented"
+    }
+  ]
 }

@@ -5,6 +5,18 @@ function up_plugins_options_page(){
     ?>
     <div class="wrap">
         <h1><?php esc_html_e('Udemy Plus Settings', 'udemy-plus' ); ?></h1>
+        <?php
+
+        if(isset($_GET['status']) && $_GET['status'] == '1'){
+            ?>
+            <div class="notice notice-success inline">
+                <p>
+                    <?php esc_html_e('Options updated successfully!', 'udemy-plus') ?>
+                </p>
+            </div>
+            <?php
+        }
+        ?>
         <form novalidate="novalidate" method="POST" action="admin-post.php">
             <input type="hidden" name="action" value="up_save_options">
             <?php wp_nonce_field('up_options_verify'); ?>

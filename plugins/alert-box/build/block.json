@@ -10,7 +10,7 @@
     "content": {
       "type": "string",
       "source": "html",
-      "selector": ".alert-box-content p"
+      "selector": ".alert-box-content div"
     },
     "icon": {
       "type": "string",

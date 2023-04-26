@@ -70,7 +70,7 @@ function Edit(_ref) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "alert-box-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "p",
+    tagName: "div",
     value: content,
     onChange: content => setAttributes({
       content
@@ -370,7 +370,7 @@ function save(_ref) {
   }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     class: "alert-box-content"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, {
-    tagName: "p",
+    tagName: "div",
     value: content
   })));
 }
@@ -445,7 +445,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"http://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"u-plus/alert-box","version":"0.1.0","title":"Alert Box","category":"widgets","description":"Adds an alert box to output important information to the reader.","attributes":{"content":{"type":"string","source":"html","selector":".alert-box-content p"},"icon":{"type":"string","default":"admin-site"},"bgColor":{"type":"string","default":"#4F46E5"},"textColor":{"type":"string","default":"#fff"}},"textdomain":"alert-box","editorScript":"file:./index.js","style":"file:./style-index.css","supports":{"html":false,"align":true},"styles":[{"name":"regular","label":"Regular","isDefault":true},{"name":"accented","label":"Accented"}]}');
+module.exports = JSON.parse('{"$schema":"http://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"u-plus/alert-box","version":"0.1.0","title":"Alert Box","category":"widgets","description":"Adds an alert box to output important information to the reader.","attributes":{"content":{"type":"string","source":"html","selector":".alert-box-content div"},"icon":{"type":"string","default":"admin-site"},"bgColor":{"type":"string","default":"#4F46E5"},"textColor":{"type":"string","default":"#fff"}},"textdomain":"alert-box","editorScript":"file:./index.js","style":"file:./style-index.css","supports":{"html":false,"align":true},"styles":[{"name":"regular","label":"Regular","isDefault":true},{"name":"accented","label":"Accented"}]}');
 
 /***/ })
 

@@ -47,7 +47,7 @@ export default function Edit({ attributes, setAttributes }) {
 				<Icon icon={icon} />
 				<div class="alert-box-content">
 					<RichText
-						tagName="p"
+						tagName="div"
 						value={content}
 						onChange={(content) => setAttributes({ content })}
 						placeholder={__("Content Area", "alert-box")}

@@ -18,7 +18,7 @@ export default function save({ attributes }) {
 				icon={icon}
 			/>
 			<div class="alert-box-content">
-				<RichText.Content tagName="p" value={content} />
+				<RichText.Content tagName="div" value={content} />
 			</div>
 		</div>
 	)

@@ -2,7 +2,13 @@
 function up_plugin_options_alt_page(){
     ?>
     <div class="wrap">
-        Options page
+       <form method="POST" action="options.php">
+
+        <?php
+            settings_fields('up_options_group');
+        ?>
+
+       </form>
     </div>
     <?php
 }

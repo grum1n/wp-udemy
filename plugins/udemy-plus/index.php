@@ -67,5 +67,7 @@ add_action('admin_enqueue_scripts', 'up_admin_enqueue');
 add_action('init', 'up_register_assets');
 //303 tut
 add_action('admin_init', 'up_settings_api');
+// 307 tut
+add_action('enqueue_block_editor_assets', 'up_enqueue_block_editor_assets');
 
 

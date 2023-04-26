@@ -71,5 +71,8 @@ add_action('admin_init', 'up_settings_api');
 add_action('enqueue_block_editor_assets', 'up_enqueue_block_editor_assets');
 //312 tut
 add_action('wp_head', 'up_wp_head');
+//318 tut
+add_action('init', 'up_load_php_translations');
+
 
 

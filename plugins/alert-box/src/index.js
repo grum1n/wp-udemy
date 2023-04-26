@@ -4,6 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType } from '@wordpress/blocks';
+import icons from './icons';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -27,6 +28,7 @@ import metadata from './block.json';
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 registerBlockType( metadata.name, {
+	icon: icons.default,
 	/**
 	 * @see ./edit.js
 	 */
@@ -36,4 +38,15 @@ registerBlockType( metadata.name, {
 	 * @see ./save.js
 	 */
 	save,
+	variations: [
+		{
+			name:"u-plus/alert-box-accented",
+			title: "Alert Box Accented",
+			icon: icons.accented,
+			attributes: {
+				textColor: "#111827",
+				className: "is-style-accented"
+			}
+		}
+	]
 } );

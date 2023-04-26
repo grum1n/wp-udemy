@@ -9,7 +9,8 @@ function up_wp_head(){
 
     $title = $options['og_title'];
     $description = $options['og_description'];
-    $image = $options['og_image'];
+    // $image = $options['og_image'];
+    $image = $options['og_img'];
     $url = site_url('/');
 
     if(is_single()){

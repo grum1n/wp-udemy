@@ -25,4 +25,12 @@ function up_register_assets(){
         $editorAsset['version'],
         true
     );
+
+    wp_register_style(
+        'up_editor',
+        plugins_url('/build/block-editor/index.css', UP_PLUGIN_FILE),
+        // $editorAsset['dependencies'],
+        // $editorAsset['version'],
+        // true
+    );
 }

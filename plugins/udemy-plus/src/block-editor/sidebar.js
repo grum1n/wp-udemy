@@ -7,7 +7,9 @@ import {
     TextControl,
     TextareaControl,
     ToggleControl,
+    Button
 } from "@wordpress/components";
+import { MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 
 registerPlugin("up-sidebar", {
     render() {
@@ -61,6 +63,31 @@ registerPlugin("up-sidebar", {
                             })
                         }}
                     />
+                    {
+                        og_override_image &&
+                        <>
+                            <img src={og_image} />
+                            <MediaUploadCheck>
+                                <MediaUpload 
+                                    accept={['image']}
+                                    render={({ open }) => {
+                                        return (
+                                            <Button isPrimary onClick={open}>
+                                                {__("Change Image", "udemy-plus")}
+                                            </Button>
+                                        )
+                                    }}
+                                    onSelect={(image) => {
+                                        editPost({
+                                            meta: {
+                                                og_image: image.sizes.opengraph.url
+                                            }
+                                        })
+                                    }}
+                                />
+                            </MediaUploadCheck>
+                        </>
+                    }
                 </PanelBody>
 
             </PluginSidebar>

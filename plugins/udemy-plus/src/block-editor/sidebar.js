@@ -1,7 +1,7 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar } from '@wordpress/edit-post';
 import { __ } from '@wordpress/i18n';
-import { useSelect } from "@wordpress/data";
+import { useSelect, useDispatch } from "@wordpress/data";
 import {
     PanelBody,
     TextControl,
@@ -15,6 +15,8 @@ registerPlugin("up-sidebar", {
             return select("core/editor").getEditedPostAttribute("meta");
         });
 
+        const { editPost } = useDispatch("core/editor");
+
         return( 
             <PluginSidebar
                 name="up_sidebar"
@@ -25,15 +27,23 @@ registerPlugin("up-sidebar", {
                     <TextControl 
                         label={__("Title", "udemy-plus")}
                         value={og_title}
-                        onChange={og_title => {
-
-                        }}
+                        onChange={(og_title) => 
+                            editPost({
+                                meta: {
+                                    og_title, 
+                                }
+                            })
+                        }
                     />
                     <TextareaControl 
                         label={__("Description", "udemy-plus")}
                         value={og_description}
-                        onChange={og_description => {
-
+                        onChange={(og_description) => {
+                            editPost({
+                                meta: {
+                                    og_description, 
+                                }
+                            })
                         }}
                     />
                     <ToggleControl 
@@ -44,7 +54,11 @@ registerPlugin("up-sidebar", {
                         "udemy-plus"
                         )}
                         onChange={og_override_image => {
-
+                            editPost({
+                                meta: {
+                                    og_override_image, 
+                                }
+                            })
                         }}
                     />
                 </PanelBody>

@@ -21,4 +21,15 @@ function up_activate_plugin(){
 
     require_once(ABSPATH . "/wp-admin/includes/upgrade.php");
     dbDelta($sql);
+
+    $options = get_option('up_options');
+
+    if(!$options){
+        add_option('up_options', [
+            'og_title' => get_bloginfo('name'),
+            'og_img' => '',
+            'og_description' => get_bloginfo('description'),
+            'enable_og' => 1
+        ]);
+    }
 }

@@ -74,6 +74,8 @@ add_action('wp_head', 'up_wp_head');
 //318 tut
 // add_action('init', 'up_load_php_translations');
 add_action('plugins_loaded', 'up_load_php_translations');
+// 320 tut
+add_action('wp_enqueue_scripts', 'up_load_block_translations', 100);
 
 
 

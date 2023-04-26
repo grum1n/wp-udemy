@@ -72,7 +72,8 @@ add_action('enqueue_block_editor_assets', 'up_enqueue_block_editor_assets');
 //312 tut
 add_action('wp_head', 'up_wp_head');
 //318 tut
-add_action('init', 'up_load_php_translations');
+// add_action('init', 'up_load_php_translations');
+add_action('plugins_loaded', 'up_load_php_translations');
 
 
 
